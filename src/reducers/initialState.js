@@ -31,4 +31,6 @@ export default {
       skills: ['html', 'css', 'javascript'],
     },
   ],
+  filter: [{ option: 'html' }, { option: 'css' }, { option: 'javascript' }],
+  dropdownOpen: false,
 }
