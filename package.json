@@ -23,5 +23,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "http://IanCapo.github.io/talentpool"
+  "homepage": "https://iancapo.github.io/talentpool/"
 }
