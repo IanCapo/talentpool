@@ -45,5 +45,5 @@ export default {
     { option: 'available' },
   ],
   dropdownOpen: false,
-  selectedFilter: 'available',
+  selectedFilter: 'all',
 }

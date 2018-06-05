@@ -1,38 +1,35 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-
-const Wrapper = styled('section')`
-  display: flex;
-`
+import UserItem from '../components/UserItem'
 
 export default class UserList extends Component {
+  filterUserItems = () => {
+    if (this.props.selectedFilter === 'all') {
+      return this.props.users.map(user => (
+        <UserItem
+          photo={user.photo}
+          name={user.name}
+          location={user.location}
+          status={user.status}
+          skills={user.skills}
+        />
+      ))
+    } else if (this.props.selectedFilter === 'available') {
+      return this.props.users
+        .filter(user => user.status === this.props.selectedFilter)
+        .map(user => (
+          <UserItem
+            photo={user.photo}
+            name={user.name}
+            location={user.location}
+            status={user.status}
+            skills={user.skills}
+          />
+        ))
+    }
+  }
   render() {
-    return (
-      <div>
-        {this.props.users
-          .filter(user => user.status === this.props.selectedFilter)
-          .map(user => (
-            <Wrapper>
-              <div>
-                <img src={user.photo} alt="" width="100px" />
-              </div>
-              <div
-                className={css`
-                  margin-left: 5px;
-                `}
-              >
-                <h3>
-                  {user.name} | {user.location}
-                </h3>
-                <p>{user.status}</p>
-                <p>
-                  {user.skills[0]} {user.skills[1]} {user.skills[2]}
-                </p>
-              </div>
-            </Wrapper>
-          ))}
-      </div>
-    )
+    return <div>{this.filterUserItems()}</div>
   }
 }
