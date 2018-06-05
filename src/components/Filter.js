@@ -27,23 +27,20 @@ DropdownToggle.propTypes = {
 
 export default class Example extends React.Component {
   render() {
+    const { onItemClick, onClick, dropdownOpen } = this.props
     return (
       <ButtonDropdown
-        isOpen={this.props.dropdownOpen}
-        onClick={e => this.props.onClick()}
+        isOpen={dropdownOpen}
+        onClick={e => onClick()}
         direction="down"
       >
         <DropdownToggle caret>Filter</DropdownToggle>
         <DropdownMenu>
-          <DropdownItem onClick={e => this.props.onSelect(0)}>css</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem onClick={e => this.props.onSelect(1)}>
-            html
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem onClick={e => this.props.onSelect(2)}>
-            javascript
-          </DropdownItem>
+          {this.props.filter.map(filter => (
+            <DropdownItem onClick={e => onItemClick(`${filter.option}`)}>
+              {filter.option}
+            </DropdownItem>
+          ))}
         </DropdownMenu>
       </ButtonDropdown>
     )
