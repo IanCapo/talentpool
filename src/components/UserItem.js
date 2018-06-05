@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
+import styled from 'react-emotion'
+
+const Wrapper = styled('section')`
+  display: flex;
+`
 
 export default class UserItem extends Component {
   render() {
     return (
       <div>
         {this.props.users.map(user => (
-          <section
-            className={css`
-              display: flex;
-              flex-direction: row;
-            `}
-          >
+          <Wrapper>
             <div>
               <img src={user.photo} alt="" width="100px" />
             </div>
@@ -28,7 +28,7 @@ export default class UserItem extends Component {
                 {user.skills[0]} {user.skills[1]} {user.skills[2]}
               </p>
             </div>
-          </section>
+          </Wrapper>
         ))}
       </div>
     )
