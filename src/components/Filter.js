@@ -35,11 +35,15 @@ export default class Example extends React.Component {
       >
         <DropdownToggle caret>Filter</DropdownToggle>
         <DropdownMenu>
-          <DropdownItem>css</DropdownItem>
+          <DropdownItem onClick={e => this.props.onSelect(0)}>css</DropdownItem>
           <DropdownItem divider />
-          <DropdownItem>html</DropdownItem>
+          <DropdownItem onClick={e => this.props.onSelect(1)}>
+            html
+          </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem>javascript</DropdownItem>
+          <DropdownItem onClick={e => this.props.onSelect(2)}>
+            javascript
+          </DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
     )

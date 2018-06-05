@@ -33,4 +33,5 @@ export default {
   ],
   filter: [{ option: 'html' }, { option: 'css' }, { option: 'javascript' }],
   dropdownOpen: false,
+  selectedFilter: null,
 }
