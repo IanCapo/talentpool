@@ -5,7 +5,7 @@ export default {
     {
       name: 'Fabian',
       location: 'hamburg',
-      status: ' not available',
+      status: 'not available',
       skills: ['html', 'css', 'javascript'],
       photo: testphoto,
     },
@@ -38,7 +38,12 @@ export default {
       photo: testphoto,
     },
   ],
-  filter: [{ option: 'html' }, { option: 'css' }, { option: 'javascript' }],
+  filter: [
+    { option: 'html' },
+    { option: 'css' },
+    { option: 'javascript' },
+    { option: 'available' },
+  ],
   dropdownOpen: false,
-  selectedFilter: null,
+  selectedFilter: 'available',
 }

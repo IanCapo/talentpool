@@ -27,15 +27,17 @@ DropdownToggle.propTypes = {
 
 export default class Example extends React.Component {
   render() {
-    const { onItemClick, onClick, dropdownOpen } = this.props
+    const { onItemClick, onClick, dropdownOpen, selectedFilter } = this.props
     return (
       <ButtonDropdown
         isOpen={dropdownOpen}
         onClick={e => onClick()}
         direction="down"
       >
-        <DropdownToggle caret>Filter</DropdownToggle>
+        <DropdownToggle caret>{selectedFilter}</DropdownToggle>
         <DropdownMenu>
+          <DropdownItem onClick={e => onItemClick('all')}>all</DropdownItem>
+          <DropdownItem divider />
           {this.props.filter.map(filter => (
             <DropdownItem onClick={e => onItemClick(`${filter.option}`)}>
               {filter.option}

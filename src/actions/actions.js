@@ -1,8 +1,8 @@
 import { createAction } from 'redux-actions'
 
 const Actions = {
-  TOGGLE: Symbol(),
-  SELECT: Symbol(),
+  TOGGLE: 'TOGGLE',
+  SELECT: 'SELECT',
 }
 
 export default Actions
