@@ -1,3 +1,5 @@
+import testphoto from '../images/foto.png'
+
 export default {
   users: [
     {
@@ -5,6 +7,7 @@ export default {
       location: 'hamburg',
       status: ' not available',
       skills: ['html', 'css', 'javascript'],
+      photo: testphoto,
     },
     {
       name: 'Max',

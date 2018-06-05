@@ -13,6 +13,9 @@ export default class UserItem extends Component {
             <p>
               {user.skills[0]} {user.skills[1]} {user.skills[2]}
             </p>
+            <div>
+              <img src={user.photo} alt="" />
+            </div>
           </div>
         ))}
       </div>
