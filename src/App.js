@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import styled from 'react-emotion'
+
 import reducer from './reducers/reducer'
 
 import initialState from './reducers/initialState'
 import UserListView from '../src/containers/UserListView'
+import UserFilterView from '../src/containers/UserFilterView'
 
 const store = createStore(
   reducer,
@@ -22,7 +23,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <UserListView/>
+          <UserFilterView />
+          <UserListView />
         </div>
       </Provider>
     )
