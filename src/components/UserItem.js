@@ -7,7 +7,7 @@ const Wrapper = styled('div')`
 const Img = styled('img')`
   width: 100px;
 `
-const Usercontent = styled('div')`
+const UserContent = styled('div')`
   margin-left: 5px;
 `
 
@@ -18,13 +18,13 @@ export default class UserItem extends Component {
         <div>
           <Img src={this.props.photo} alt="" />
         </div>
-        <Usercontent>
+        <UserContent>
           <h3>
             {this.props.name} | {this.props.location}
           </h3>
           <p>{this.props.status}</p>
           <p>{this.props.skills.join(' ')}</p>
-        </Usercontent>
+        </UserContent>
       </Wrapper>
     )
   }
