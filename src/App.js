@@ -29,11 +29,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <MainApp>
-          <UserFilterView
-            className={css`
-              align-self: flex-end;
-            `}
-          />
+          <UserFilterView />
           <UserListView />
         </MainApp>
       </Provider>

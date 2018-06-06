@@ -6,6 +6,7 @@ import {
   DropdownItem,
 } from 'reactstrap'
 import PropTypes from 'prop-types'
+import { css } from 'emotion'
 
 ButtonDropdown.propTypes = {
   disabled: PropTypes.bool,
@@ -33,9 +34,15 @@ export default class Example extends React.Component {
         isOpen={dropdownOpen}
         onClick={e => onClick()}
         direction="down"
+        className={css`
+          align-self: flex-end;
+          margin: 5px 5px;
+        `}
       >
-        <DropdownToggle caret>{selectedFilter}</DropdownToggle>
-        <DropdownMenu>
+        <DropdownToggle caret size="sm">
+          {selectedFilter}
+        </DropdownToggle>
+        <DropdownMenu right>
           <DropdownItem onClick={e => onItemClick('all')}>all</DropdownItem>
           <DropdownItem divider />
           {this.props.filter.map(filter => (
