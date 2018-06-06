@@ -44,6 +44,6 @@ export default {
     { option: 'javascript' },
     { option: 'available' },
   ],
-  dropdownOpen: false,
+  isDropdownOpen: false,
   selectedFilter: 'all',
 }

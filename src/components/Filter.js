@@ -28,15 +28,15 @@ DropdownToggle.propTypes = {
 
 export default class Example extends React.Component {
   render() {
-    const { onItemClick, onClick, dropdownOpen, selectedFilter } = this.props
+    const { onItemClick, onClick, isDropdownOpen, selectedFilter } = this.props
     return (
       <ButtonDropdown
-        isOpen={dropdownOpen}
+        isOpen={isDropdownOpen}
         onClick={e => onClick()}
         direction="down"
         className={css`
           align-self: flex-end;
-          margin: 5px 5px;
+          margin: 5px;
         `}
       >
         <DropdownToggle caret size="sm">

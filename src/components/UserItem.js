@@ -5,27 +5,27 @@ import styled from 'react-emotion'
 const Wrapper = styled('div')`
   display: flex;
 `
+const Img = styled('img')`
+  width: 100px;
+`
+const Usercontent = styled('div')`
+  margin-left: 5px;
+`
 
 export default class UserItem extends Component {
   render() {
     return (
       <Wrapper>
         <div>
-          <img src={this.props.photo} alt="" width="100px" />
+          <Img src={this.props.photo} alt="" />
         </div>
-        <div
-          className={css`
-            margin-left: 5px;
-          `}
-        >
+        <Usercontent>
           <h3>
             {this.props.name} | {this.props.location}
           </h3>
           <p>{this.props.status}</p>
-          <p>
-            {this.props.skills[0]} {this.props.skills[1]} {this.props.skills[2]}
-          </p>
-        </div>
+          <p>{this.props.skills.join(' ')}</p>
+        </Usercontent>
       </Wrapper>
     )
   }
