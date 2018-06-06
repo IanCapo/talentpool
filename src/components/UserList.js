@@ -4,9 +4,22 @@ import styled from 'react-emotion'
 import UserItem from '../components/UserItem'
 
 export default class UserList extends Component {
-  filterUserItems = () => {
-    if (this.props.selectedFilter === 'all') {
-      return this.props.users.map(user => (
+  createFilteredUserItems = () => {
+    const { selectedFilter, users } = this.props
+
+    let filterFunction
+
+    if (selectedFilter === 'all') {
+      filterFunction = user => true
+    } else if (selectedFilter === 'available') {
+      filterFunction = user => user.status === selectedFilter
+    } else {
+      filterFunction = user => user.skills.includes(selectedFilter)
+    }
+
+    return users
+      .filter(filterFunction)
+      .map(user => (
         <UserItem
           photo={user.photo}
           name={user.name}
@@ -15,21 +28,9 @@ export default class UserList extends Component {
           skills={user.skills}
         />
       ))
-    } else if (this.props.selectedFilter === 'available') {
-      return this.props.users
-        .filter(user => user.status === this.props.selectedFilter)
-        .map(user => (
-          <UserItem
-            photo={user.photo}
-            name={user.name}
-            location={user.location}
-            status={user.status}
-            skills={user.skills}
-          />
-        ))
-    }
   }
+
   render() {
-    return <div>{this.filterUserItems()}</div>
+    return <div>{this.createFilteredUserItems()}</div>
   }
 }
