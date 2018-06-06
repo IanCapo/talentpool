@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
-import UserItem from '../components/UserItem'
+import UserList from '../components/UserList'
 
 const mapStateToProps = state => ({
   users: state.users,
+  selectedFilter: state.selectedFilter,
 })
 
-const UserListView = connect(mapStateToProps)(UserItem)
+const UserListView = connect(mapStateToProps)(UserList)
 
 export default UserListView
