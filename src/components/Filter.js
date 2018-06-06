@@ -33,6 +33,7 @@ export default class Example extends React.Component {
             <DropdownItem
               toggle={false}
               onClick={e => onItemClick(`${filter.option}`)}
+              key={filter.id}
             >
               {filter.option}
             </DropdownItem>

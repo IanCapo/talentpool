@@ -24,6 +24,7 @@ export default class UserList extends Component {
           location={user.location}
           status={user.status}
           skills={user.skills}
+          key={user.id}
         />
       ))
   }
