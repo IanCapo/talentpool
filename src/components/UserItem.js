@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { css } from 'emotion'
 import styled from 'react-emotion'
 
 const Wrapper = styled('div')`

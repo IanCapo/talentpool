@@ -43,10 +43,15 @@ export default class Example extends React.Component {
           {selectedFilter}
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem onClick={e => onItemClick('all')}>all</DropdownItem>
-          <DropdownItem divider />
+          <DropdownItem toggle={false} onClick={e => onItemClick('all')}>
+            all
+          </DropdownItem>
+          <DropdownItem toggle={false} divider />
           {this.props.filter.map(filter => (
-            <DropdownItem onClick={e => onItemClick(`${filter.option}`)}>
+            <DropdownItem
+              toggle={false}
+              onClick={e => onItemClick(`${filter.option}`)}
+            >
               {filter.option}
             </DropdownItem>
           ))}

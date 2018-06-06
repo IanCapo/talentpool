@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import styled from 'react-emotion'
-import { css } from 'emotion'
 import reducer from './reducers/reducer'
 
 import initialState from './reducers/initialState'

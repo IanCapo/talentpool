@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { css } from 'emotion'
-import styled from 'react-emotion'
 import UserItem from '../components/UserItem'
 
 export default class UserList extends Component {
