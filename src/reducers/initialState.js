@@ -1,27 +1,31 @@
 import testphoto from '../images/foto.jpg'
+import uid from 'uid'
 
 export default {
   users: [
     {
       name: 'Fabian',
       location: 'hamburg',
-      status: ' not available',
-      skills: ['html', 'css', 'javascript'],
+      status: 'not available',
+      skills: ['html'],
       photo: testphoto,
+      id: uid(),
     },
     {
       name: 'Max',
       location: 'hamburg',
       status: 'available',
-      skills: ['html', 'css', 'React'],
+      skills: ['css'],
       photo: testphoto,
+      id: uid(),
     },
     {
       name: 'Christan',
       location: 'hamburg',
       status: 'available',
-      skills: ['html', 'css', 'javascript'],
+      skills: ['javascript'],
       photo: testphoto,
+      id: uid(),
     },
     {
       name: 'Hans',
@@ -29,6 +33,7 @@ export default {
       status: 'not available',
       skills: ['html', 'javascript', 'Sketch'],
       photo: testphoto,
+      id: uid(),
     },
     {
       name: 'Janna',
@@ -36,9 +41,15 @@ export default {
       status: 'available',
       skills: ['html', 'css', 'javascript'],
       photo: testphoto,
+      id: uid(),
     },
   ],
-  filter: [{ option: 'html' }, { option: 'css' }, { option: 'javascript' }],
-  dropdownOpen: false,
-  selectedFilter: null,
+  filter: [
+    { option: 'html', id: uid() },
+    { option: 'css', id: uid() },
+    { option: 'javascript', id: uid() },
+    { option: 'available', id: uid() },
+  ],
+  isDropdownOpen: false,
+  selectedFilter: 'all',
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-
+import styled from 'react-emotion'
 import reducer from './reducers/reducer'
 
 import initialState from './reducers/initialState'
@@ -14,18 +14,23 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
+const MainApp = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
 class App extends Component {
   componentDidMount() {
     store.subscribe(() => this.forceUpdate())
   }
   render() {
-    const state = store.getState()
     return (
       <Provider store={store}>
-        <div className="App">
+        <MainApp>
           <UserFilterView />
           <UserListView />
-        </div>
+        </MainApp>
       </Provider>
     )
   }

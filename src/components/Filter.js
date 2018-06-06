@@ -5,47 +5,47 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
-import PropTypes from 'prop-types'
-
-ButtonDropdown.propTypes = {
-  disabled: PropTypes.bool,
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
-  group: PropTypes.bool,
-  isOpen: PropTypes.bool,
-  tag: PropTypes.string,
-  toggle: PropTypes.func,
-}
-
-DropdownToggle.propTypes = {
-  caret: PropTypes.bool,
-  color: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  'data-toggle': PropTypes.string,
-  'aria-haspopup': PropTypes.bool,
-}
+import { css } from 'emotion'
 
 export default class Example extends React.Component {
   render() {
+    const { onItemClick, onClick, isDropdownOpen, selectedFilter } = this.props
     return (
       <ButtonDropdown
-        isOpen={this.props.dropdownOpen}
-        onClick={e => this.props.onClick()}
+        isOpen={isDropdownOpen}
+        onClick={e => onClick()}
         direction="down"
+        toggle={noop}
+        className={css`
+          align-self: flex-end;
+          margin: 5px;
+        `}
       >
-        <DropdownToggle caret>Filter</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem onClick={e => this.props.onSelect(0)}>css</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem onClick={e => this.props.onSelect(1)}>
-            html
+        <DropdownToggle caret size="sm">
+          {selectedFilter}
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem toggle={false} onClick={e => onItemClick('all')}>
+            all
           </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem onClick={e => this.props.onSelect(2)}>
-            javascript
-          </DropdownItem>
+          <DropdownItem toggle={false} divider />
+          {this.props.filter.map(filter => (
+            <DropdownItem
+              toggle={false}
+              onClick={e => onItemClick(`${filter.option}`)}
+              key={filter.id}
+            >
+              {filter.option}
+            </DropdownItem>
+          ))}
         </DropdownMenu>
       </ButtonDropdown>
     )
   }
+}
+
+function noop() {
+  // this function does nothing,
+  // button ButtonDropdown expects a func
+  // in toggle={}
 }
