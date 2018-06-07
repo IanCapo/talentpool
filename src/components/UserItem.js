@@ -31,7 +31,6 @@ export default class UserItem extends Component {
   render() {
     const ImageContainer = styled('div')`
       justify-self: center;
-      height: auto;
       border-radius: 50%;
       width: 100px;
       height: 100px;
