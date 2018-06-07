@@ -25,6 +25,7 @@ const ParagraphSkills = styled('p')`
 const HeadlineThree = styled('h3')`
   margin: 0;
   font-size: 100%;
+  display: block;
 `
 
 export default class UserItem extends Component {
@@ -32,8 +33,8 @@ export default class UserItem extends Component {
     const ImageContainer = styled('div')`
       justify-self: center;
       border-radius: 50%;
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       background-image: url(${this.props.photo});
       background-size: cover;
       background-position: center;
