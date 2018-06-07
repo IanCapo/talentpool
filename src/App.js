@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import styled from 'react-emotion'
 import reducer from './reducers/reducer'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import initialState from './reducers/initialState'
-import UserListView from '../src/containers/UserListView'
-import UserFilterView from '../src/containers/UserFilterView'
+
+import TalentList from './TalentList'
+import TalentProfile from './TalentProfile'
 
 const store = createStore(
   reducer,
@@ -14,24 +14,22 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
-const MainApp = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
-
 class App extends Component {
   componentDidMount() {
     store.subscribe(() => this.forceUpdate())
   }
   render() {
     return (
-      <Provider store={store}>
-        <MainApp>
-          <UserFilterView />
-          <UserListView />
-        </MainApp>
-      </Provider>
+      <Router>
+        <section>
+          <Route exact path="/" render={() => <TalentList />} />
+          <Route path="/talentprofile" component={TalentProfile} />
+          <div>
+            <Link to="/">TalentList </Link>
+            <Link to="/talentprofile">TalentProfile</Link>
+          </div>
+        </section>
+      </Router>
     )
   }
 }
