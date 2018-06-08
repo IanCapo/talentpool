@@ -30,12 +30,13 @@ const HeadlineThree = styled('h3')`
 
 export default class UserItem extends Component {
   render() {
+    const { photo, status, name, location, skills } = this.props
     const ImageContainer = styled('div')`
       justify-self: center;
       border-radius: 50%;
       width: 90px;
       height: 90px;
-      background-image: url(${this.props.photo});
+      background-image: url(${photo});
       background-size: cover;
       background-position: center;
     `
@@ -43,18 +44,19 @@ export default class UserItem extends Component {
       margin: 1px;
       padding: 1px;
       font-size: 50%;
-      color: ${this.props.status === 'available' ? 'green' : '#b50000'};
+      color: ${status === 'available' ? 'green' : '#b50000'};
     `
+
     return (
       <Wrapper>
         <ImageContainer />
         <UserContent>
           <HeadlineThree>
-            <span> {this.props.name}</span> |
-            <Location> {this.props.location}</Location>
+            <span> {name}</span> |
+            <Location> {location}</Location>
           </HeadlineThree>
-          <Availability>{this.props.status}</Availability>
-          <ParagraphSkills>{this.props.skills.join(' ')}</ParagraphSkills>
+          <Availability>{status}</Availability>
+          <ParagraphSkills>{skills.join(' ')}</ParagraphSkills>
         </UserContent>
       </Wrapper>
     )

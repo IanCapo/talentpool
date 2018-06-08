@@ -2,35 +2,44 @@ import React, { Component } from 'react'
 import { createStore } from 'redux'
 import reducer from './reducers/reducer'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
 import initialState from './reducers/initialState'
 
-import TalentList from './TalentList'
-import TalentProfile from './TalentProfile'
+import UserListPage from './components/UserListPage'
+import TalentProfileView from './containers/TalentProfileView'
 
 const store = createStore(
   reducer,
-  initialState,
+  setupInitialState(),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
 class App extends Component {
-  componentDidMount() {
-    store.subscribe(() => this.forceUpdate())
-  }
   render() {
     return (
-      <Router>
-        <section>
-          <Route exact path="/" render={() => <TalentList />} />
-          <Route path="/talentprofile" component={TalentProfile} />
-          <div>
-            <Link to="/">TalentList </Link>
-            <Link to="/talentprofile">TalentProfile</Link>
-          </div>
-        </section>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <section>
+            <Route exact path="/" component={UserListPage} />
+            <Route path={`/talentprofile/:id`} component={TalentProfileView} />
+            <div>
+              <Link to="/">UserListPage </Link>
+            </div>
+          </section>
+        </Router>
+      </Provider>
     )
+  }
+}
+
+function setupInitialState() {
+  let stateString = localStorage.getItem('state')
+  if (stateString) {
+    return JSON.parse(stateString)
+  } else {
+    localStorage.setItem('state', JSON.stringify(initialState))
+    return initialState
   }
 }
 
