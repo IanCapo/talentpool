@@ -5,9 +5,17 @@ export default {
   users: [
     {
       name: 'Fabian',
+      lastname: 'Pasin',
       location: 'hamburg',
       status: 'not available',
-      skills: ['html'],
+      skills: [
+        'html',
+        'javascript',
+        'css',
+        'react',
+        'redux',
+        'Responsive Websites',
+      ],
       photo: testphoto,
       id: uid(),
     },
@@ -20,7 +28,7 @@ export default {
       id: uid(),
     },
     {
-      name: 'Christan',
+      name: 'Christian',
       location: 'hamburg',
       status: 'available',
       skills: ['javascript'],
