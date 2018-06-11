@@ -7,6 +7,7 @@ const Wrapper = styled('div')`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   padding: 1rem;
+  overflow: auto;
 `
 const UserContent = styled('div')`
   justify-self: flex-end;
@@ -20,12 +21,13 @@ const Location = styled('span')`
 const ParagraphSkills = styled('p')`
   margin: 1px;
   padding: 1px;
-  font-size: 70%;
+  font-size: 60%;
+  white-space: nowrap;
 `
 const HeadlineThree = styled('h3')`
   margin: 0;
   font-size: 100%;
-  display: block;
+  white-space: nowrap;
 `
 
 export default class UserItem extends Component {
@@ -56,7 +58,9 @@ export default class UserItem extends Component {
             <Location> {location}</Location>
           </HeadlineThree>
           <Availability>{status}</Availability>
-          <ParagraphSkills>{skills.join(' ')}</ParagraphSkills>
+          <ParagraphSkills>
+            {skills[0]} | {skills[1]} | {skills[2]}
+          </ParagraphSkills>
         </UserContent>
       </Wrapper>
     )

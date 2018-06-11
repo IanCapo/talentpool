@@ -22,6 +22,7 @@ const UserContent = styled('div')`
   padding: 0.3rem;
   border-bottom: 0.1rem #514b4b solid;
   margin-bottom: 1rem;
+  white-space: nowrap;
 `
 const Location = styled('span')`
   font-size: 70%;
@@ -33,19 +34,24 @@ const HeadlineThree = styled('h3')`
   margin-bottom: 0.8rem;
 `
 const Button = styled('button')`
-  border: solid 1px grey;
+  border: solid 1px #ed6544;
+  background: #ed6544;
   border-radius: 3px;
   box-shadow: 1px 1px 1px grey;
   margin: 1rem;
   width: 33%;
+  color: white;
+  overflow: auto;
 `
 const SkillTile = styled('div')`
-  border: 1px solid orange;
+  border: 1px solid #ed6544;
   border-radius: 3px;
   width: auto;
   padding: 0.2rem;
   text-align: center;
   margin: 1rem;
+  color: #ed6544;
+  overflow: auto;
 `
 
 export default class TalentProfile extends Component {

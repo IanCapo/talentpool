@@ -24,7 +24,7 @@ class App extends Component {
             <Route exact path="/" component={UserListPage} />
             <Route path={`/talentprofile/:id`} component={TalentProfileView} />
             <div>
-              <Link to="/">UserListPage </Link>
+              <Link to="/">Talentlist </Link>
             </div>
           </section>
         </Router>
