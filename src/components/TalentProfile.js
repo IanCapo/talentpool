@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
 import { css } from 'emotion'
+import { Link } from 'react-router-dom'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -94,6 +95,9 @@ export default class TalentProfile extends Component {
         </UserContent>
         <Button disabled>Skills</Button>
         {skills.map(skill => <SkillTile>{skill}</SkillTile>)}
+        <div>
+          <Link to="/">Talentlist </Link>
+        </div>
       </Wrapper>
     )
   }
