@@ -57,7 +57,15 @@ const SkillTile = styled('div')`
 
 export default class TalentProfile extends Component {
   render() {
-    const { photo, status, name, location, skills, lastname } = this.props.user
+    const {
+      photo,
+      status,
+      name,
+      location,
+      skills,
+      lastname,
+      id,
+    } = this.props.user
     const ImageContainer = styled('div')`
       justify-self: center;
       border-radius: 50%;
@@ -94,7 +102,9 @@ export default class TalentProfile extends Component {
           </Availability>
         </UserContent>
         <Button disabled>Skills</Button>
-        {skills.map(skill => <SkillTile>{skill}</SkillTile>)}
+        {skills.map(skill => (
+          <SkillTile key={id + Math.random()}>{skill}</SkillTile>
+        ))}
         <div>
           <Link to="/">Talentlist </Link>
         </div>
