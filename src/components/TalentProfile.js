@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import SkillTile from './SkillTile'
 import ButtonComponent from './ButtonComponent'
 import UserContentProfile from './UserContentProfile'
+import TalentHistory from './TalentHistory'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -15,18 +16,31 @@ const Wrapper = styled('div')`
   margin-bottom: 0.5rem;
   padding: 1rem;
 `
-
+const ButtonWrapper = styled('div')`
+  display: flex;
+  justify-content: space-evenly;
+`
 export default class TalentProfile extends Component {
+  renderSection = () => {
+    const { selectedSection, user } = this.props
+    if (selectedSection === 'skills') {
+      return user.skills.map(skill => (
+        <SkillTile key={Math.random()} text={skill} />
+      ))
+    } else if (selectedSection === 'history') {
+      return user.history.map(job => (
+        <TalentHistory
+          key={Math.random()}
+          jobtitle={job.jobtitle}
+          startdate={job.startdate}
+          enddate={job.enddate}
+        />
+      ))
+    }
+  }
+
   render() {
-    const {
-      photo,
-      status,
-      name,
-      location,
-      skills,
-      lastname,
-      id,
-    } = this.props.user
+    const { photo, status, name, location, lastname } = this.props.user
 
     return (
       <Wrapper>
@@ -37,12 +51,24 @@ export default class TalentProfile extends Component {
           location={location}
           status={status}
         />
-        <ButtonComponent disabled text="Skills" />
-        {skills.map(skill => (
-          <SkillTile key={id + Math.random()} text={skill} />
-        ))}
+        <ButtonWrapper>
+          <ButtonComponent
+            onClick={e => this.props.onSelectSection('history')}
+            text="History"
+            selectedSection={this.props.selectedSection}
+          />
+          <ButtonComponent
+            onClick={e => this.props.onSelectSection('skills')}
+            text="Skills"
+          />
+        </ButtonWrapper>
+
+        {this.renderSection()}
+
         <div>
-          <Link to="/">Talentlist </Link>
+          <Link onClick={e => this.props.onSelectSection('history')} to="/">
+            Talentlist{' '}
+          </Link>
         </div>
       </Wrapper>
     )
