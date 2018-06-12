@@ -7,6 +7,7 @@ const Wrapper = styled('div')`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   padding: 1rem;
+  overflow: auto;
 `
 const UserContent = styled('div')`
   justify-self: flex-end;
@@ -20,22 +21,24 @@ const Location = styled('span')`
 const ParagraphSkills = styled('p')`
   margin: 1px;
   padding: 1px;
-  font-size: 70%;
+  font-size: 60%;
+  white-space: nowrap;
 `
 const HeadlineThree = styled('h3')`
   margin: 0;
   font-size: 100%;
-  display: block;
+  white-space: nowrap;
 `
 
 export default class UserItem extends Component {
   render() {
+    const { photo, status, name, location, skills } = this.props
     const ImageContainer = styled('div')`
       justify-self: center;
       border-radius: 50%;
       width: 90px;
       height: 90px;
-      background-image: url(${this.props.photo});
+      background-image: url(${photo});
       background-size: cover;
       background-position: center;
     `
@@ -43,18 +46,21 @@ export default class UserItem extends Component {
       margin: 1px;
       padding: 1px;
       font-size: 50%;
-      color: ${this.props.status === 'available' ? 'green' : '#b50000'};
+      color: ${status === 'available' ? 'green' : '#b50000'};
     `
+
     return (
       <Wrapper>
         <ImageContainer />
         <UserContent>
           <HeadlineThree>
-            <span> {this.props.name}</span> |
-            <Location> {this.props.location}</Location>
+            <span> {name}</span> |
+            <Location> {location}</Location>
           </HeadlineThree>
-          <Availability>{this.props.status}</Availability>
-          <ParagraphSkills>{this.props.skills.join(' ')}</ParagraphSkills>
+          <Availability>{status}</Availability>
+          <ParagraphSkills>
+            {skills[0]} | {skills[1]} | {skills[2]}
+          </ParagraphSkills>
         </UserContent>
       </Wrapper>
     )
