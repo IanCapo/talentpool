@@ -27,6 +27,7 @@ export default class UserList extends Component {
           lastname={user.lastname}
           id={user.id}
           users={users}
+          history={user.history}
         />
       </Link>
     ))

@@ -6,6 +6,8 @@ export default (state, action) => {
       return { ...state, isDropdownOpen: !state.isDropdownOpen }
     case Actions.SELECT:
       return { ...state, selectedFilter: action.payload }
+    case Actions.SELECT_SECTION:
+      return { ...state, selectedSection: action.payload }
     default:
       return state
   }
