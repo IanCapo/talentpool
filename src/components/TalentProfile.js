@@ -61,6 +61,7 @@ export default class TalentProfile extends Component {
           <ButtonComponent
             onClick={e => onSelectSection('Skills')}
             text="Skills"
+            selectedSection={selectedSection}
           />
         </ButtonWrapper>
 

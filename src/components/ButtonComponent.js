@@ -11,12 +11,7 @@ const Button = styled('button')`
   width: auto;
   color: white;
   overflow: auto;
-  &:hover {
-    background: white;
-    color: #ed6544;
-    border: 1px solid #ed6544;
-  } 
-  &:focus, :active {
+  &:focus, {
     outline: none;
   }
   }
@@ -42,7 +37,7 @@ export default class ButtonComponent extends Component {
     const { selectedSection, text, onClick } = this.props
     if (selectedSection === text) {
       return <ActiveButton onClick={e => onClick()}>{text}</ActiveButton>
-    } else {
+    } else if (selectedSection !== text) {
       return <Button onClick={e => onClick()}>{text}</Button>
     }
   }
