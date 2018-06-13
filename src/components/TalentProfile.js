@@ -23,11 +23,11 @@ const ButtonWrapper = styled('div')`
 export default class TalentProfile extends Component {
   renderSection = () => {
     const { selectedSection, user } = this.props
-    if (selectedSection === 'skills') {
+    if (selectedSection === 'Skills') {
       return user.skills.map(skill => (
         <SkillTile key={Math.random()} text={skill} />
       ))
-    } else if (selectedSection === 'history') {
+    } else if (selectedSection === 'History') {
       return user.history.map(job => (
         <TalentHistory
           key={Math.random()}
@@ -53,12 +53,12 @@ export default class TalentProfile extends Component {
         />
         <ButtonWrapper>
           <ButtonComponent
-            onClick={e => this.props.onSelectSection('history')}
+            onClick={e => this.props.onSelectSection('History')}
             text="History"
             selectedSection={this.props.selectedSection}
           />
           <ButtonComponent
-            onClick={e => this.props.onSelectSection('skills')}
+            onClick={e => this.props.onSelectSection('Skills')}
             text="Skills"
           />
         </ButtonWrapper>
@@ -66,7 +66,7 @@ export default class TalentProfile extends Component {
         {this.renderSection()}
 
         <div>
-          <Link onClick={e => this.props.onSelectSection('history')} to="/">
+          <Link onClick={e => this.props.onSelectSection('History')} to="/">
             Talentlist{' '}
           </Link>
         </div>

@@ -100,5 +100,5 @@ export default {
   ],
   isDropdownOpen: false,
   selectedFilter: 'all',
-  selectedSection: 'history',
+  selectedSection: 'History',
 }
