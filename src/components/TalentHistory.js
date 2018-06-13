@@ -14,11 +14,12 @@ const StyledH4 = styled('h4')`
 
 export default class TalentHistory extends Component {
   render() {
+    const { jobtitle, startdate, enddate } = this.props
     return (
       <JobSection>
-        <StyledH4>{this.props.jobtitle}</StyledH4>
+        <StyledH4>{jobtitle}</StyledH4>
         <p>
-          {this.props.startdate} - {this.props.enddate}
+          {startdate} - {enddate}
         </p>
       </JobSection>
     )

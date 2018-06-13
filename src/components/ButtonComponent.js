@@ -7,7 +7,7 @@ const Button = styled('button')`
   border-radius: 3px;
   box-shadow: 1px 1px 1px grey;
   margin: 1rem;
-  padding: auto 0.25rem;
+  padding: .12rem .5rem;
   width: auto;
   color: white;
   overflow: auto;
@@ -17,7 +17,7 @@ const Button = styled('button')`
     border: 1px solid #ed6544;
   } 
   &:focus, :active {
-    outline: none !important;
+    outline: none;
   }
   }
 `
@@ -28,27 +28,22 @@ const ActiveButton = styled('button')`
   border-radius: 3px;
   box-shadow: 1px 1px 1px grey;
   margin: 1rem;
-  padding: auto 0.25rem;
+  padding: .12rem .5rem;
   width: auto;
   overflow: auto;
-  &:focus, :active {
-    outline: none !important;
+  &:focus{
+    outline: none;
   }
   }
 `
 
 export default class ButtonComponent extends Component {
   renderButton = () => {
-    if (this.props.selectedSection === this.props.text) {
-      return (
-        <ActiveButton onClick={e => this.props.onClick()}>
-          {this.props.text}
-        </ActiveButton>
-      )
+    const { selectedSection, text, onClick } = this.props
+    if (selectedSection === text) {
+      return <ActiveButton onClick={e => onClick()}>{text}</ActiveButton>
     } else {
-      return (
-        <Button onClick={e => this.props.onClick()}>{this.props.text}</Button>
-      )
+      return <Button onClick={e => onClick()}>{text}</Button>
     }
   }
   render() {
