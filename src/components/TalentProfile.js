@@ -7,6 +7,7 @@ import SkillTile from './SkillTile'
 import ButtonComponent from './ButtonComponent'
 import UserContentProfile from './UserContentProfile'
 import TalentHistory from './TalentHistory'
+import TalentContactForm from './TalentContactForm'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -36,6 +37,8 @@ export default class TalentProfile extends Component {
           enddate={job.enddate}
         />
       ))
+    } else if (selectedSection === 'Contact') {
+      return <TalentContactForm />
     }
   }
 
@@ -61,6 +64,11 @@ export default class TalentProfile extends Component {
           <ButtonComponent
             onClick={e => onSelectSection('Skills')}
             text="Skills"
+            selectedSection={selectedSection}
+          />
+          <ButtonComponent
+            onClick={e => onSelectSection('Contact')}
+            text="Contact"
             selectedSection={selectedSection}
           />
         </ButtonWrapper>
