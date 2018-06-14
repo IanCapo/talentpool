@@ -20,6 +20,7 @@ const Wrapper = styled('div')`
 const ButtonWrapper = styled('div')`
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 `
 export default class TalentProfile extends Component {
   renderSection = () => {
