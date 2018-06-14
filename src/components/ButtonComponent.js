@@ -6,6 +6,7 @@ const Button = styled('button')`
   background: #ed6544;
   border-radius: 3px;
   box-shadow: 1px 1px 1px grey;
+  font-size: 70%;
   margin: 1rem;
   padding: .12rem .5rem;
   width: auto;
@@ -21,6 +22,7 @@ const ActiveButton = styled('button')`
   color: #ed6544;
   border: 1px solid #ed6544;
   border-radius: 3px;
+  font-size: 70%;
   box-shadow: 1px 1px 1px grey;
   margin: 1rem;
   padding: .12rem .5rem;

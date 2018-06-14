@@ -1,10 +1,16 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { css } from 'emotion'
+
+const StyledForm = css`
+  font-size: 50%;
+  margin: 1rem;
+`
 
 export default class TalentContactForm extends React.Component {
   render() {
     return (
-      <Form>
+      <Form className={StyledForm}>
         <FormGroup>
           <Label for="CompanyName">Company Name</Label>
           <Input
@@ -38,7 +44,7 @@ export default class TalentContactForm extends React.Component {
             type="email"
             name="email"
             id="exampleEmail"
-            placeholder="with a placeholder"
+            placeholder="Your email address"
           />
         </FormGroup>
 
