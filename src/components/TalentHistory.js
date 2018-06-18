@@ -4,6 +4,7 @@ import styled from 'react-emotion'
 const JobSection = styled('div')`
   display: flex;
   flex-direction: column;
+  font-size: 50%;
   margin: 1rem;
   margin-top: 3vh;
 `
