@@ -4,22 +4,21 @@ import styled from 'react-emotion'
 import { Link } from 'react-router-dom'
 
 import SkillTile from './SkillTile'
-import Button from './Button'
+import ButtonComponent from './ButtonComponent'
 import UserContentProfile from './UserContentProfile'
 import TalentHistory from './TalentHistory'
-import TalentContactForm from './TalentContactForm'
 
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   padding: 1rem;
 `
 const ButtonWrapper = styled('div')`
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
 `
 export default class TalentProfile extends Component {
   renderSection = () => {
@@ -37,8 +36,6 @@ export default class TalentProfile extends Component {
           enddate={job.enddate}
         />
       ))
-    } else if (selectedSection === 'Contact') {
-      return <TalentContactForm />
     }
   }
 
@@ -56,19 +53,14 @@ export default class TalentProfile extends Component {
           status={status}
         />
         <ButtonWrapper>
-          <Button
+          <ButtonComponent
             onClick={e => onSelectSection('History')}
             text="History"
             selectedSection={selectedSection}
           />
-          <Button
+          <ButtonComponent
             onClick={e => onSelectSection('Skills')}
             text="Skills"
-            selectedSection={selectedSection}
-          />
-          <Button
-            onClick={e => onSelectSection('Contact')}
-            text="Contact"
             selectedSection={selectedSection}
           />
         </ButtonWrapper>

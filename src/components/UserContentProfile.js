@@ -15,9 +15,12 @@ const UserContent = styled('div')`
   margin-bottom: 1rem;
   white-space: nowrap;
 `
-const Location = styled('span')``
+const Location = styled('span')`
+  font-size: 70%;
+`
 const HeadlineThree = styled('h3')`
   margin: 0;
+  font-size: 100%;
   display: block;
   margin-bottom: 0.8rem;
 `
@@ -41,6 +44,7 @@ export default class UserContentProfile extends Component {
     const Availability = styled('p')`
       margin: 1px;
       padding: 1px;
+      font-size: 50%;
       color: ${status === 'available' ? 'green' : '#b50000'};
     `
     return (
