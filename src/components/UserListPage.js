@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 
 import UserListView from '../containers/UserListView'
 import UserFilterView from '../containers/UserFilterView'
+import Header from './Header'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -14,6 +15,7 @@ class UserListPage extends Component {
   render() {
     return (
       <Wrapper>
+        <Header />
         <UserFilterView />
         <UserListView />
       </Wrapper>

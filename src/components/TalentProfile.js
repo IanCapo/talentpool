@@ -8,19 +8,24 @@ import Button from './Button'
 import UserContentProfile from './UserContentProfile'
 import TalentHistory from './TalentHistory'
 import TalentContactForm from './TalentContactForm'
+import logo from '../images/logo.png'
 
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
   margin-bottom: 0.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
 `
 const ButtonWrapper = styled('div')`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 `
+const Image = styled('img')`
+  width: 20%;
+`
+
 export default class TalentProfile extends Component {
   renderSection = () => {
     const { selectedSection, user } = this.props
@@ -48,6 +53,10 @@ export default class TalentProfile extends Component {
 
     return (
       <Wrapper>
+        <Link onClick={e => onSelectSection('History')} to="/">
+          <Image src={logo} alt="" />
+        </Link>
+
         <UserContentProfile
           name={name}
           lastname={lastname}
