@@ -53,7 +53,9 @@ export default class TalentProfile extends Component {
 
     return (
       <Wrapper>
-        <Image src={logo} alt="" />
+        <Link onClick={e => onSelectSection('History')} to="/">
+          <Image src={logo} alt="" />
+        </Link>
 
         <UserContentProfile
           name={name}
