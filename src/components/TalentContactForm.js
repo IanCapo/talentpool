@@ -11,45 +11,45 @@ export default class TalentContactForm extends React.Component {
     return (
       <Form className={StyledForm}>
         <FormGroup>
-          <Label for="CompanyName">Company Name</Label>
+          <Label for="company-name">Company Name</Label>
           <Input
             type="text"
             name="companyname"
-            id="companyName"
+            id="company-name"
             placeholder="Your company"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="contactName">Name</Label>
+          <Label for="contact-name">Name</Label>
           <Input
             type="text"
             name="name"
-            id="contactName"
+            id="contact-name"
             placeholder="Your name"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="phoneNumber">Phone</Label>
+          <Label for="phone-number">Phone</Label>
           <Input
             type="phone"
             name="phone"
-            id="phoneNumber"
+            id="phone-number"
             placeholder="Your phone number"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="exampleEmail">Email</Label>
+          <Label for="example-email">Email</Label>
           <Input
             type="email"
             name="email"
-            id="exampleEmail"
+            id="example email"
             placeholder="Your email address"
           />
         </FormGroup>
 
         <FormGroup>
-          <Label for="exampleText">Your message</Label>
-          <Input type="textarea" name="text" id="messageText" />
+          <Label for="message-text">Your message</Label>
+          <Input type="textarea" name="text" id="message-text" />
         </FormGroup>
         <Button>Submit</Button>
       </Form>
