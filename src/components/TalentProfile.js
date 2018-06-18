@@ -4,7 +4,7 @@ import styled from 'react-emotion'
 import { Link } from 'react-router-dom'
 
 import SkillTile from './SkillTile'
-import ButtonComponent from './ButtonComponent'
+import Button from './Button'
 import UserContentProfile from './UserContentProfile'
 import TalentHistory from './TalentHistory'
 import TalentContactForm from './TalentContactForm'
@@ -13,7 +13,6 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  font-size: 2rem;
   margin-bottom: 0.5rem;
   padding: 1rem;
 `
@@ -57,17 +56,17 @@ export default class TalentProfile extends Component {
           status={status}
         />
         <ButtonWrapper>
-          <ButtonComponent
+          <Button
             onClick={e => onSelectSection('History')}
             text="History"
             selectedSection={selectedSection}
           />
-          <ButtonComponent
+          <Button
             onClick={e => onSelectSection('Skills')}
             text="Skills"
             selectedSection={selectedSection}
           />
-          <ButtonComponent
+          <Button
             onClick={e => onSelectSection('Contact')}
             text="Contact"
             selectedSection={selectedSection}

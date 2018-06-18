@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
 
-const Button = styled('button')`
+const StyledButton = styled('button')`
   border: solid 1px #ed6544;
   background: #ed6544;
   border-radius: 3px;
   box-shadow: 1px 1px 1px grey;
-  font-size: 70%;
   margin: 1rem;
   padding: .12rem .5rem;
   width: auto;
@@ -22,7 +21,6 @@ const ActiveButton = styled('button')`
   color: #ed6544;
   border: 1px solid #ed6544;
   border-radius: 3px;
-  font-size: 70%;
   box-shadow: 1px 1px 1px grey;
   margin: 1rem;
   padding: .12rem .5rem;
@@ -34,13 +32,13 @@ const ActiveButton = styled('button')`
   }
 `
 
-export default class ButtonComponent extends Component {
+export default class Button extends Component {
   renderButton = () => {
     const { selectedSection, text, onClick } = this.props
     if (selectedSection === text) {
       return <ActiveButton onClick={e => onClick()}>{text}</ActiveButton>
     } else if (selectedSection !== text) {
-      return <Button onClick={e => onClick()}>{text}</Button>
+      return <StyledButton onClick={e => onClick()}>{text}</StyledButton>
     }
   }
   render() {

@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { css } from 'emotion'
 
 const StyledForm = css`
-  font-size: 50%;
   margin: 1rem;
 `
 
