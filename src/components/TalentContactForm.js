@@ -49,7 +49,7 @@ export default class TalentContactForm extends React.Component {
         </FormGroup>
 
         <FormGroup>
-          <Label for="exampleText">You message</Label>
+          <Label for="exampleText">Your message</Label>
           <Input type="textarea" name="text" id="messageText" />
         </FormGroup>
         <Button>Submit</Button>
