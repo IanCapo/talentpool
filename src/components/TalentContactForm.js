@@ -38,11 +38,11 @@ export default class TalentContactForm extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="example-email">Email</Label>
+          <Label for="contact-email">Email</Label>
           <Input
             type="email"
             name="email"
-            id="example email"
+            id="contact-email"
             placeholder="Your email address"
           />
         </FormGroup>
