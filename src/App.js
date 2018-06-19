@@ -3,6 +3,7 @@ import { createStore } from 'redux'
 import reducer from './reducers/reducer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { overrideState } from './actions/actions'
 
 import initialState from './reducers/initialState'
 
@@ -16,6 +17,14 @@ const store = createStore(
 )
 
 class App extends Component {
+  componentDidMount() {
+    fetch('/state', {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then(state => store.dispatch(overrideState(state)))
+  }
   render() {
     return (
       <Provider store={store}>
