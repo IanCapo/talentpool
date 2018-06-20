@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import reducer from './reducers/reducer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { overrideState } from './actions/actions'
+import { useLocalStorage } from './middleware'
 
 import initialState from './reducers/initialState'
 
@@ -12,7 +13,8 @@ import TalentProfileView from './containers/TalentProfileView'
 
 const store = createStore(
   reducer,
-  setupInitialState(),
+  getInitialState(),
+  applyMiddleware(useLocalStorage),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
@@ -39,12 +41,11 @@ class App extends Component {
   }
 }
 
-function setupInitialState() {
-  let stateString = localStorage.getItem('state')
-  if (stateString) {
-    return JSON.parse(stateString)
+function getInitialState() {
+  const savedState = localStorage.getItem('state')
+  if (savedState) {
+    return JSON.parse(savedState)
   } else {
-    localStorage.setItem('state', JSON.stringify(initialState))
     return initialState
   }
 }
