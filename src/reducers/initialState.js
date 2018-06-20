@@ -1,5 +1,4 @@
 import testphoto from '../images/foto.jpg'
-import logo from '../images/logo.png'
 import uid from 'uid'
 
 export default {
