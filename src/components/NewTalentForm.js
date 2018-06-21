@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { CustomInput, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { css } from 'emotion'
 import styled from 'react-emotion'
 import { Link } from 'react-router-dom'
@@ -16,9 +16,10 @@ export default class TalentContactForm extends React.Component {
   state = {
     name: '',
     lastname: '',
-    phone: '',
+    location: '',
     status: '',
     skills: [],
+    photo: '',
   }
 
   onSubmit = e => {
@@ -27,9 +28,10 @@ export default class TalentContactForm extends React.Component {
     this.setState({
       name: '',
       lastname: '',
-      phone: '',
+      location: '',
       status: '',
       skills: [],
+      photo: '',
     })
   }
 
@@ -102,6 +104,17 @@ export default class TalentContactForm extends React.Component {
               id="location"
               onChange={this.saveInput}
               placeholder="e.g. Hamburg or New York"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="photo">Upload a pic</Label>
+            <CustomInput
+              type="file"
+              id="photo"
+              name="photo"
+              label="Yo, pick a pic!"
+              value={this.state.photo}
+              onChange={this.saveInput}
             />
           </FormGroup>
 

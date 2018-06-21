@@ -8,6 +8,7 @@ const personSchema = new mongoose.Schema({
   id: mongoose.Schema.ObjectId,
   skills: Array,
   history: [{}],
+  photo: { data: Buffer, contentType: String },
 })
 
 module.exports = mongoose.model('Person', personSchema)
