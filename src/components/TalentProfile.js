@@ -26,6 +26,27 @@ const Image = styled('img')`
   width: 20%;
 `
 
+const StyledLink = styled('div')`
+  height: 5vw;
+  width: 5vw;
+  border-style: solid;
+  border-color: white;
+  border-width: 0px 2px 2px 0px;
+  transform: rotate(135deg);
+  position: absolute;
+  top: 9px;
+  left: 12px;
+`
+const StyledDiv = styled('div')`
+  margin-top: 2rem;
+  position: relative;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50px;
+  background: #5b6167;
+  opacity: 0.8;
+`
+
 export default class TalentProfile extends Component {
   renderSection = () => {
     const { selectedSection, user } = this.props
@@ -86,7 +107,9 @@ export default class TalentProfile extends Component {
 
         <div>
           <Link onClick={e => onSelectSection('History')} to="/">
-            Talentlist
+            <StyledDiv>
+              <StyledLink />
+            </StyledDiv>
           </Link>
         </div>
       </Wrapper>

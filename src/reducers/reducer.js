@@ -8,6 +8,8 @@ export default (state, action) => {
       return { ...state, selectedFilter: action.payload }
     case Actions.SELECT_SECTION:
       return { ...state, selectedSection: action.payload }
+    case Actions.OVERRIDE_STATE:
+      return { ...action.payload }
     default:
       return state
   }

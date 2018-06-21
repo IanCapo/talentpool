@@ -1,41 +1,52 @@
 import React, { Component } from 'react'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import reducer from './reducers/reducer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { overrideState } from './actions/actions'
+import { useLocalStorage } from './middleware'
 
 import initialState from './reducers/initialState'
 
 import UserListPage from './components/UserListPage'
 import TalentProfileView from './containers/TalentProfileView'
+import ScrollToTop from './components/ScrollToTop'
 
 const store = createStore(
   reducer,
-  setupInitialState(),
+  getInitialState(),
+  applyMiddleware(useLocalStorage),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
 class App extends Component {
+  componentDidMount() {
+    fetch('/state', {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then(state => store.dispatch(overrideState(state)))
+  }
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <section>
+          <ScrollToTop>
             <Route exact path="/" component={UserListPage} />
             <Route path={`/talentprofile/:id`} component={TalentProfileView} />
-          </section>
+          </ScrollToTop>
         </Router>
       </Provider>
     )
   }
 }
 
-function setupInitialState() {
-  let stateString = localStorage.getItem('state')
-  if (stateString) {
-    return JSON.parse(stateString)
+function getInitialState() {
+  const savedState = localStorage.getItem('state')
+  if (savedState) {
+    return JSON.parse(savedState)
   } else {
-    localStorage.setItem('state', JSON.stringify(initialState))
     return initialState
   }
 }
