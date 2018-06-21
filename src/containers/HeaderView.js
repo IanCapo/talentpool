@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import TalentProfile from '../components/TalentProfile'
+import Header from '../components/Header'
 import { selectSection } from '../actions/actions'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -11,9 +11,9 @@ const mapDispatchToProps = dispatch => ({
   onSelectSection: option => dispatch(selectSection(option)),
 })
 
-const TalentProfileView = connect(
+const HeaderView = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TalentProfile)
+)(Header)
 
-export default TalentProfileView
+export default HeaderView

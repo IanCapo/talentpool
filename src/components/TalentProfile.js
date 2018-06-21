@@ -7,7 +7,7 @@ import SkillTile from './SkillTile'
 import Button from './Button'
 import UserContentProfile from './UserContentProfile'
 import TalentHistory from './TalentHistory'
-import TalentContactForm from './TalentContactForm'
+import TalentContactFormView from '../containers/TalentContactFormView'
 import logo from '../images/logo.png'
 
 const Wrapper = styled('div')`
@@ -64,20 +64,18 @@ export default class TalentProfile extends Component {
         />
       ))
     } else if (selectedSection === 'Contact') {
-      return <TalentContactForm />
+      return <TalentContactFormView />
     }
   }
 
   render() {
     const { photo, status, name, location, lastname } = this.props.user
     const { onSelectSection, selectedSection } = this.props
-
     return (
       <Wrapper>
         <Link onClick={e => onSelectSection('History')} to="/">
           <Image src={logo} alt="" />
         </Link>
-
         <UserContentProfile
           name={name}
           lastname={lastname}

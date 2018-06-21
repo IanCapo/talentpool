@@ -11,6 +11,7 @@ import initialState from './reducers/initialState'
 import UserListPage from './components/UserListPage'
 import TalentProfileView from './containers/TalentProfileView'
 import ScrollToTop from './components/ScrollToTop'
+import NewTalentFormView from './containers/NewTalentFormView'
 
 const store = createStore(
   reducer,
@@ -21,7 +22,7 @@ const store = createStore(
 
 class App extends Component {
   componentDidMount() {
-    fetch('/state', {
+    fetch('/person', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
     })
@@ -35,6 +36,7 @@ class App extends Component {
           <ScrollToTop>
             <Route exact path="/" component={UserListPage} />
             <Route path={`/talentprofile/:id`} component={TalentProfileView} />
+            <Route path={`/newuser`} component={NewTalentFormView} />
           </ScrollToTop>
         </Router>
       </Provider>

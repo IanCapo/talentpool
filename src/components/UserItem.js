@@ -58,9 +58,7 @@ export default class UserItem extends Component {
             <Location> {location}</Location>
           </HeadlineThree>
           <Availability>{status}</Availability>
-          <ParagraphSkills>
-            {skills[0]} | {skills[1]} | {skills[2]}
-          </ParagraphSkills>
+          <ParagraphSkills>Skills</ParagraphSkills>
         </UserContent>
       </Wrapper>
     )

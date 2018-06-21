@@ -3,10 +3,29 @@ var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
-
-var stateRouter = require('./routes/state')
+var personRouter = require('./routes/person')
 
 var app = express()
+
+const mongoose = require('mongoose')
+var options = {
+  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+}
+
+var mongodbUri =
+  'mongodb://neuefische:neuefische2018@ds261540.mlab.com:61540/talentpoolnf'
+mongoose.connect(
+  mongodbUri,
+  options,
+)
+mongoose.Promise = global.Promise
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
+db.once('open', function() {
+  // we're connected!
+  console.log('mongoose connected')
+})
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -18,7 +37,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.use('/state', stateRouter)
+app.use('/person', personRouter)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

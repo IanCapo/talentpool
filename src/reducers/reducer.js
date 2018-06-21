@@ -9,7 +9,18 @@ export default (state, action) => {
     case Actions.SELECT_SECTION:
       return { ...state, selectedSection: action.payload }
     case Actions.OVERRIDE_STATE:
-      return { ...action.payload }
+      return {
+        ...state,
+        users: [...action.payload],
+      }
+    case Actions.SEND_FORM:
+      fetch('/person', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(action.payload),
+      }).then(x => console.log('sent!', x))
+      return state
+
     default:
       return state
   }
