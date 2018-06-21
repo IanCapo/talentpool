@@ -20,6 +20,7 @@ const store = createStore(
 
 class App extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0)
     fetch('/state', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
