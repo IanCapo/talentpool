@@ -10,6 +10,7 @@ import initialState from './reducers/initialState'
 
 import UserListPage from './components/UserListPage'
 import TalentProfileView from './containers/TalentProfileView'
+import ScrollToTop from './components/ScrollToTop'
 
 const store = createStore(
   reducer,
@@ -19,6 +20,9 @@ const store = createStore(
 )
 
 class App extends Component {
+  componentDidUpdate() {
+    window.scrollTo(0, 0)
+  }
   componentDidMount() {
     window.scrollTo(0, 0)
     fetch('/state', {
@@ -32,10 +36,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <section>
+          <ScrollToTop>
             <Route exact path="/" component={UserListPage} />
             <Route path={`/talentprofile/:id`} component={TalentProfileView} />
-          </section>
+          </ScrollToTop>
         </Router>
       </Provider>
     )
