@@ -4,6 +4,7 @@ import { css } from 'emotion'
 import styled from 'react-emotion'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
+import { saveFullstate } from '../service'
 
 const styledForm = css`
   margin: 1rem;
@@ -22,21 +23,36 @@ export default class TalentContactForm extends React.Component {
     photo: '',
   }
 
-  onSubmit = e => {
-    e.preventDefault()
-    this.props.onSubmit(this.state)
-    this.setState({
-      name: '',
-      lastname: '',
-      location: '',
-      status: '',
-      skills: [],
-      photo: '',
-    })
+  onChange = e => {
+    console.log('')
+    const input = event.target
+    this.setState({ [input.name]: [input.value] })
   }
 
-  saveInput = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  onSubmit = e => {
+    e.preventDefault()
+    this.setState(
+      {
+        ...this.state,
+      },
+      () => {
+        saveFullstate(this.state)
+        fetch('/person', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: this.state.name,
+            lastname: this.state.lastname,
+            location: this.state.location,
+            status: this.state.status,
+            photo: this.state.photo,
+            skills: this.state.skills,
+          }),
+        })
+      },
+    )
   }
 
   render() {
@@ -55,7 +71,7 @@ export default class TalentContactForm extends React.Component {
               value={this.state.name}
               id="talent-name"
               placeholder="Your name"
-              onChange={this.saveInput}
+              onChange={this.saveFullState}
             />
           </FormGroup>
           <FormGroup>
@@ -66,7 +82,7 @@ export default class TalentContactForm extends React.Component {
               value={this.state.lastname}
               id="last-name"
               placeholder="Your lastname"
-              onChange={this.saveInput}
+              onChange={this.saveFullState}
             />
           </FormGroup>
           <FormGroup tag="fieldset">
@@ -77,7 +93,7 @@ export default class TalentContactForm extends React.Component {
                   type="radio"
                   name="status"
                   value={this.state.status === 'available'}
-                  onChange={this.saveInput}
+                  onChange={this.saveFullState}
                 />
                 available
               </Label>
@@ -88,7 +104,7 @@ export default class TalentContactForm extends React.Component {
                   type="radio"
                   name="status"
                   value={this.state.status === 'not available'}
-                  onChange={this.saveInput}
+                  onChange={this.saveFullState}
                 />
                 not available
               </Label>

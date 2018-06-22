@@ -34,7 +34,7 @@ export default class Header extends Component {
     return (
       <HeaderBox>
         <Image src={logo} alt="" />
-        <Link onClick={e => onSelectSection('newuser')} to="/newuser">
+        <Link to="/newuser">
           <NewUser>New User</NewUser>
         </Link>
       </HeaderBox>
