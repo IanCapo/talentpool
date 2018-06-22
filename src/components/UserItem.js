@@ -38,7 +38,7 @@ export default class UserItem extends Component {
       border-radius: 50%;
       width: 90px;
       height: 90px;
-      background-image: url(${photo});
+      background-image: url('${photo}');
       background-size: cover;
       background-position: center;
     `
@@ -58,7 +58,9 @@ export default class UserItem extends Component {
             <Location> {location}</Location>
           </HeadlineThree>
           <Availability>{status}</Availability>
-          <ParagraphSkills>Skills</ParagraphSkills>
+          <ParagraphSkills>
+            {skills[0]} | {skills[1]} | {skills[2]}{' '}
+          </ParagraphSkills>
         </UserContent>
       </Wrapper>
     )
