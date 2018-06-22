@@ -1,4 +1,4 @@
-export default function saveFullState(state) {
+export function saveFullState(state) {
   fetch('/state', {
     body: JSON.stringify(state),
     method: 'POST',
