@@ -64,7 +64,6 @@ export default class SkillTags extends React.Component {
           handleAddition={this.handleAddition}
           handleDrag={this.handleDrag}
           delimiters={delimiters}
-          onSubmit={this.props.addSkill}
         />
       </div>
     )

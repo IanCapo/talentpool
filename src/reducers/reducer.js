@@ -7,7 +7,7 @@ export default (state, action) => {
     case Actions.SELECT:
       return { ...state, selectedFilter: action.payload }
     case Actions.SELECT_SECTION:
-      return { ...state, selectedSection: action.payload }
+      return { ...state, selectedSection: action.payload.value }
     case Actions.OVERRIDE_STATE:
       return {
         ...state,

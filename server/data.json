@@ -113,5 +113,6 @@
   ],
   "isDropdownOpen": false,
   "selectedFilter": "all",
-  "selectedSection": "History"
+  "selectedSection": "History",
+  "skills": []
 }
