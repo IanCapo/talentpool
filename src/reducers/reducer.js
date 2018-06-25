@@ -13,6 +13,8 @@ export default (state, action) => {
         ...state,
         users: [...action.payload],
       }
+    case Actions.ADD_SKILL:
+      return { ...state, skills: action.payload }
     case Actions.SEND_FORM:
       fetch('/person', {
         method: 'POST',

@@ -101,4 +101,6 @@ export default {
   isDropdownOpen: false,
   selectedFilter: 'all',
   selectedSection: 'History',
+
+  skills: [],
 }

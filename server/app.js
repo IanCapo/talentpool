@@ -4,6 +4,10 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var personRouter = require('./routes/person')
+const fs = require('fs')
+const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload')
+const uid = require('uid')
 
 var app = express()
 
@@ -36,6 +40,29 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'build')))
+app.use(
+  bodyParser({
+    keepExtensions: true,
+    uploadDir: __dirname + '/public/uploads',
+  }),
+)
+app.use(
+  fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+  }),
+)
+app.post('/image', (req, res) => {
+  Object.keys(req.files).forEach(name => {
+    const id = uid()
+    const image = req.files[name]
+    const ext = image.name.split('.')[1]
+
+    fs.writeFile(__dirname + '/public/' + id + '.' + ext, image.data, err => {
+      err ? res.end('error') : res.end('done')
+    })
+    // new Person({ image: id + ext })
+  })
+})
 
 app.use('/person', personRouter)
 

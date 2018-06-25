@@ -30,7 +30,6 @@ const NewUser = styled('div')`
 
 export default class Header extends Component {
   render() {
-    const { onSelectSection } = this.props
     return (
       <HeaderBox>
         <Image src={logo} alt="" />

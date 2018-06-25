@@ -5,6 +5,7 @@ import styled from 'react-emotion'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
 import { saveFullState } from '../service'
+import SkillTags from '../components/SkillTags'
 
 const styledForm = css`
   margin: 1rem;
@@ -19,7 +20,6 @@ export default class TalentContactForm extends React.Component {
     lastname: '',
     location: '',
     status: '',
-    skills: [],
     photo: '',
   }
 
@@ -48,7 +48,7 @@ export default class TalentContactForm extends React.Component {
             location: this.state.location,
             status: this.state.status,
             photo: this.state.photo,
-            skills: this.state.skills,
+            skills: this.props.skills,
           }),
         })
       },
@@ -92,7 +92,7 @@ export default class TalentContactForm extends React.Component {
                 <Input
                   type="radio"
                   name="status"
-                  value={this.state.status === 'available'}
+                  value="available"
                   onChange={this.onChange}
                 />
                 available
@@ -103,7 +103,7 @@ export default class TalentContactForm extends React.Component {
                 <Input
                   type="radio"
                   name="status"
-                  value={this.state.status === 'not available'}
+                  value="not available"
                   onChange={this.onChange}
                 />
                 not available
@@ -122,6 +122,12 @@ export default class TalentContactForm extends React.Component {
               placeholder="e.g. Hamburg or New York"
             />
           </FormGroup>
+
+          <FormGroup>
+            <Label for="skills">What are your skills?</Label>
+            <SkillTags />
+          </FormGroup>
+
           <FormGroup>
             <Label for="photo">Upload a pic</Label>
             <CustomInput

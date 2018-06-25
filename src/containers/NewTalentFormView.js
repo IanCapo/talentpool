@@ -4,6 +4,7 @@ import { sendForm, selectSection } from '../actions/actions'
 
 const mapStateToProps = (state, ownProps) => ({
   selectedSection: state.selectedSection,
+  skills: state.skills,
 })
 
 const mapDispatchToProps = dispatch => ({
