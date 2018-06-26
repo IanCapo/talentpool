@@ -7,14 +7,14 @@ export default (state, action) => {
     case Actions.SELECT:
       return { ...state, selectedFilter: action.payload }
     case Actions.SELECT_SECTION:
-      return { ...state, selectedSection: action.payload.value }
+      return { ...state, selectedSection: action.payload }
     case Actions.OVERRIDE_STATE:
       return {
         ...state,
         users: [...action.payload],
       }
     case Actions.ADD_SKILL:
-      return { ...state, skills: action.payload }
+      return { ...state, skills: { ...state.skills.push(action.payload) } }
     case Actions.SEND_FORM:
       fetch('/person', {
         method: 'POST',

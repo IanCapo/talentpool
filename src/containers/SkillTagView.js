@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addSkill: data => dispatch(addSkill(data)),
+  addSkill: skill => dispatch(addSkill(skill)),
 })
 
 const SkillTagsView = connect(

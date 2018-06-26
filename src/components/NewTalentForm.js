@@ -1,11 +1,12 @@
 import React from 'react'
+import { WithContext as ReactTags } from 'react-tag-input'
+import './skilltagstyle.css'
 import { CustomInput, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { css } from 'emotion'
 import styled from 'react-emotion'
 import { Link, Route } from 'react-router-dom'
 import logo from '../images/logo.png'
 import { saveFullState } from '../service'
-import SkillTags from '../components/SkillTags'
 
 const styledForm = css`
   margin: 1rem;
@@ -14,15 +15,36 @@ const Image = styled('img')`
   width: 20%;
 `
 
-export default class TalentContactForm extends React.Component {
-  state = {
-    name: '',
-    lastname: '',
-    location: '',
-    status: '',
-    photo: '',
-  }
+const KeyCodes = {
+  comma: 188,
+  enter: 13,
+}
 
+const delimiters = [KeyCodes.comma, KeyCodes.enter]
+
+export default class NewTalentForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      name: '',
+      lastname: '',
+      location: '',
+      status: '',
+      photo: '',
+      tags: [],
+      suggestions: [
+        { id: 'HTML5', text: 'HTML5' },
+        { id: 'CSS', text: 'CSS' },
+        { id: 'JavaScript', text: 'JavaScript' },
+        { id: 'React', text: 'React' },
+        { id: 'Node', text: 'Node' },
+        { id: 'Express', text: 'Express' },
+      ],
+    }
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleAddition = this.handleAddition.bind(this)
+  }
   onChange = event => {
     console.log('')
     const input = event.target
@@ -48,18 +70,33 @@ export default class TalentContactForm extends React.Component {
             location: this.state.location,
             status: this.state.status,
             photo: this.state.photo,
-            skills: this.props.skills,
+            skills: this.state.tags.map(tags => tags.text),
           }),
         })
       },
     )
   }
 
+  handleDelete(i) {
+    const { tags } = this.state
+    this.setState({
+      tags: tags.filter((tag, index) => index !== i),
+    })
+  }
+
+  handleAddition(tag) {
+    this.setState(state => ({
+      tags: [...state.tags, tag],
+    }))
+  }
+
   render() {
+    const { tags, suggestions } = this.state
     const { onSelectSection } = this.props
+
     return (
       <div>
-        <Link onClick={e => onSelectSection('History')} to="/">
+        <Link onClick={e => onSelectSection('History')} to="/talentprofile/:id">
           <Image src={logo} alt="" />
         </Link>
         <Form className={styledForm} onSubmit={this.onSubmit}>
@@ -122,12 +159,15 @@ export default class TalentContactForm extends React.Component {
               placeholder="e.g. Hamburg or New York"
             />
           </FormGroup>
-
-          <FormGroup>
-            <Label for="skills">What are your skills?</Label>
-            <SkillTags />
-          </FormGroup>
-
+          <Label for="skills">What are your skills?</Label>
+          <ReactTags
+            tags={tags}
+            placeholder="Add a new skill"
+            suggestions={suggestions}
+            handleDelete={this.handleDelete}
+            handleAddition={this.handleAddition}
+            delimiters={delimiters}
+          />
           <FormGroup>
             <Label for="photo">Upload a pic</Label>
             <CustomInput
