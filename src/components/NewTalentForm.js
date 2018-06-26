@@ -1,6 +1,6 @@
 import React from 'react'
 import { WithContext as ReactTags } from 'react-tag-input'
-import './skilltagstyle.css'
+import './newtalentformstyle.css'
 import { CustomInput, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { css } from 'emotion'
 import styled from 'react-emotion'
