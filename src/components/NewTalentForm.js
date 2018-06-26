@@ -4,7 +4,7 @@ import './newtalentformstyle.css'
 import { CustomInput, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { Link, Route } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import logo from '../images/logo.png'
 import { saveFullState } from '../service'
 
@@ -180,7 +180,9 @@ export default class NewTalentForm extends React.Component {
             />
           </FormGroup>
 
-          <Button>Submit</Button>
+          <Link to="/">
+            <Button>Submit</Button>
+          </Link>
         </Form>
       </div>
     )
