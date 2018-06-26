@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "server.js",
+  "host": "0.0.0.0",
   "proxy": "http://localhost:3001",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -35,7 +36,8 @@
     "redux-connected-proptypes": "^1.0.0",
     "redux-thunk": "^2.3.0",
     "storybook": "^1.0.0",
-    "uid": "0.0.2"
+    "uid": "0.0.2",
+    "webpack": "^4.12.1"
   },
   "scripts": {
     "start": "react-scripts start | npm run start-server",

@@ -32,6 +32,7 @@ export default class NewTalentForm extends React.Component {
       location: '',
       status: '',
       photo: '',
+      file: null,
       tags: [],
       suggestions: [
         { id: 'HTML5', text: 'HTML5' },
@@ -46,9 +47,13 @@ export default class NewTalentForm extends React.Component {
     this.handleAddition = this.handleAddition.bind(this)
   }
   onChange = event => {
-    console.log('')
+    console.log(event.target.value)
     const input = event.target
-    this.setState({ [input.name]: [input.value] })
+    const file = input.files && input.files.length && event.target.files[0]
+    this.setState({
+      [input.name]: [input.value],
+      file: file,
+    })
   }
 
   onSubmit = e => {
@@ -58,20 +63,25 @@ export default class NewTalentForm extends React.Component {
         ...this.state,
       },
       () => {
+        const formData = new FormData()
+        const dataObj = {
+          name: this.state.name,
+          lastname: this.state.lastname,
+          location: this.state.location,
+          status: this.state.status,
+          photo: this.state.photo,
+          skills: this.state.tags.map(tags => tags.text),
+          file: this.state.file,
+          key: this.state.name + this.state.lastname,
+        }
+        Object.keys(dataObj).forEach(key => {
+          const value = dataObj[key]
+          formData.append(key, value)
+        })
         saveFullState(this.state)
         fetch('/person', {
           method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: this.state.name,
-            lastname: this.state.lastname,
-            location: this.state.location,
-            status: this.state.status,
-            photo: this.state.photo,
-            skills: this.state.tags.map(tags => tags.text),
-          }),
+          body: formData,
         })
       },
     )
@@ -96,7 +106,7 @@ export default class NewTalentForm extends React.Component {
 
     return (
       <div>
-        <Link onClick={e => onSelectSection('History')} to="/talentprofile/:id">
+        <Link onClick={e => onSelectSection('History')} to="/">
           <Image src={logo} alt="" />
         </Link>
         <Form className={styledForm} onSubmit={this.onSubmit}>
@@ -177,12 +187,13 @@ export default class NewTalentForm extends React.Component {
               label="Yo, pick a pic!"
               value={this.state.photo}
               onChange={this.onChange}
+              className="file-upload"
+              data-cloudinary-field="image_id"
+              data-form-data="{ 'transform': {'crop':'limit','tags':'samples', 'width':3000, 'height':2000}} "
             />
           </FormGroup>
 
-          <Link to="/">
-            <Button>Submit</Button>
-          </Link>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
     )

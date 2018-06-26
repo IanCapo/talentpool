@@ -4,14 +4,16 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var personRouter = require('./routes/person')
-const fs = require('fs')
-const bodyParser = require('body-parser')
-const fileUpload = require('express-fileupload')
-const uid = require('uid')
+var fs = require('fs')
+var Person = require('./models/Person')
+var bodyParser = require('body-parser')
+var fileUpload = require('express-fileupload')
+var uid = require('uid')
 
 var app = express()
 
-const mongoose = require('mongoose')
+var mongoose = require('mongoose')
+
 var options = {
   server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
   replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
@@ -39,11 +41,13 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(express.static('www'))
 app.use(express.static(path.join(__dirname, 'build')))
 app.use(
   bodyParser({
+    limit: '50mb',
     keepExtensions: true,
-    uploadDir: __dirname + '/public/uploads',
+    uploadDir: __dirname + '../public/uploads',
   }),
 )
 app.use(
@@ -51,17 +55,43 @@ app.use(
     limits: { fileSize: 50 * 1024 * 1024 },
   }),
 )
-app.post('/image', (req, res) => {
-  Object.keys(req.files).forEach(name => {
-    const id = uid()
-    const image = req.files[name]
-    const ext = image.name.split('.')[1]
 
-    fs.writeFile(__dirname + '/public/' + id + '.' + ext, image.data, err => {
-      err ? res.end('error') : res.end('done')
-    })
-    // new Person({ image: id + ext })
+app.post('/person', (req, res) => {
+  var tempPath = req.files[0].path
+  console.log('hello world')
+  var str = uid.sync(7)
+  var extension = req.files[0].originalname.split('.').pop()
+  console.log('files received: ' + str)
+  str = str + '.' + extension
+  var TARGET_PATH = path.resolve(__dirname, '../public/uploads/')
+  var targetPath = path.join(TARGET_PATH, str)
+
+  var is = fs.createReadStream(tempPath)
+  var os = fs.createWriteStream(targetPath)
+  is.pipe(os)
+  // file write error
+  is.on('error', function(err) {
+    if (err) {
+      console.log(err)
+    }
   })
+  // file end
+  is.on('end', function() {
+    //delete file from temp folder
+    fs.unlink(tempPath, function(err) {
+      if (err) {
+        return res.send(500, 'Something went wrong')
+      }
+    })
+  })
+  var x = '/uploads/' + str
+  imgs.unshift({
+    imageName: str,
+    photo: x,
+    extension: '.png',
+    created: Date.now(),
+  })
+  res.json({ message: 'ok' })
 })
 
 app.use('/person', personRouter)
