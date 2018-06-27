@@ -28,6 +28,7 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(state => store.dispatch(overrideState(state)))
+      .catch(error => console.warn(error))
   }
   render() {
     return (

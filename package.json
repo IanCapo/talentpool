@@ -36,8 +36,7 @@
     "redux-connected-proptypes": "^1.0.0",
     "redux-thunk": "^2.3.0",
     "storybook": "^1.0.0",
-    "uid": "0.0.2",
-    "webpack": "^4.12.1"
+    "uid": "0.0.2"
   },
   "scripts": {
     "start": "react-scripts start | npm run start-server",

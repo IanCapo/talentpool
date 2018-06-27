@@ -187,9 +187,9 @@ export default class NewTalentForm extends React.Component {
               label="Yo, pick a pic!"
               value={this.state.photo}
               onChange={this.onChange}
-              className="file-upload"
-              data-cloudinary-field="image_id"
-              data-form-data="{ 'transform': {'crop':'limit','tags':'samples', 'width':3000, 'height':2000}} "
+              // className="file-upload"
+              // data-cloudinary-field="image_id"
+              // data-form-data="{ 'transform': {'crop':'limit','tags':'samples', 'width':3000, 'height':2000}} "
             />
           </FormGroup>
 

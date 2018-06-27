@@ -44,7 +44,7 @@ app.use(cookieParser())
 app.use(express.static('www'))
 app.use(express.static(path.join(__dirname, 'build')))
 app.use(
-  bodyParser({
+  express({
     limit: '50mb',
     keepExtensions: true,
     uploadDir: __dirname + '../public/uploads',
