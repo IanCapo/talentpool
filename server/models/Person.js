@@ -9,6 +9,7 @@ const personSchema = new mongoose.Schema({
   skills: Array,
   history: [{}],
   photo: String,
+  file: String,
 })
 
 module.exports = mongoose.model('Person', personSchema)
