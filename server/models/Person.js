@@ -6,7 +6,7 @@ const personSchema = new mongoose.Schema({
   location: String,
   status: String,
   id: mongoose.Schema.ObjectId,
-  skills: Array,
+  skills: [],
   history: [{}],
   photo: String,
   file: String,

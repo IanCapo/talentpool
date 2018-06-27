@@ -20,7 +20,7 @@ const KeyCodes = {
   enter: 13,
 }
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter]
+const delimiters = [KeyCodes.enter]
 
 export default class NewTalentForm extends React.Component {
   constructor(props) {
@@ -46,6 +46,7 @@ export default class NewTalentForm extends React.Component {
     }
     this.handleDelete = this.handleDelete.bind(this)
     this.handleAddition = this.handleAddition.bind(this)
+    this.handleDrag = this.handleDrag.bind(this)
   }
 
   onChange = event => {
@@ -72,7 +73,7 @@ export default class NewTalentForm extends React.Component {
           location: this.state.location,
           status: this.state.status,
           photo: this.state.photo,
-          skills: this.state.tags.map(tags => tags.text),
+          skills: this.state.tags.map(tag => tag.text),
           file: this.state.file,
           key: this.state.name + this.state.lastname,
         }
@@ -100,6 +101,16 @@ export default class NewTalentForm extends React.Component {
     this.setState(state => ({
       tags: [...state.tags, tag],
     }))
+  }
+  handleDrag(tag, currPos, newPos) {
+    const tags = [...this.state.tags]
+    const newTags = tags.slice()
+
+    newTags.splice(currPos, 1)
+    newTags.splice(newPos, 0, tag)
+
+    // re-render
+    this.setState({ tags: newTags })
   }
 
   render() {
