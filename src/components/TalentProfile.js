@@ -73,7 +73,7 @@ export default class TalentProfile extends Component {
     const { onSelectSection, selectedSection } = this.props
     return (
       <Wrapper>
-        <Link onClick={e => onSelectSection('History')} to="/">
+        <Link onClick={e => onSelectSection('Skills')} to="/">
           <Image src={logo} alt="" />
         </Link>
         <UserContentProfile
@@ -104,7 +104,7 @@ export default class TalentProfile extends Component {
         {this.renderSection()}
 
         <div>
-          <Link onClick={e => onSelectSection('History')} to="/">
+          <Link onClick={e => onSelectSection('Skills')} to="/">
             <StyledDiv>
               <StyledLink />
             </StyledDiv>

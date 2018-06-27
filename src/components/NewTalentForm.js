@@ -42,10 +42,12 @@ export default class NewTalentForm extends React.Component {
         { id: 'Node', text: 'Node' },
         { id: 'Express', text: 'Express' },
       ],
+      redirect: false,
     }
     this.handleDelete = this.handleDelete.bind(this)
     this.handleAddition = this.handleAddition.bind(this)
   }
+
   onChange = event => {
     console.log(event.target.value)
     const input = event.target
@@ -111,29 +113,29 @@ export default class NewTalentForm extends React.Component {
         </Link>
         <Form className={styledForm} onSubmit={this.onSubmit}>
           <FormGroup>
-            <Label for="talent-name">Firstname</Label>
+            <Label for="talent-name">First name</Label>
             <Input
               type="text"
               name="name"
               value={this.state.name}
               id="talent-name"
-              placeholder="Your name"
+              placeholder="e.g. John"
               onChange={this.onChange}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="last-name">Lastname</Label>
+            <Label for="last-name">Last name</Label>
             <Input
               type="text"
               name="lastname"
               value={this.state.lastname}
               id="last-name"
-              placeholder="Your lastname"
+              placeholder="e.g. Doe"
               onChange={this.onChange}
             />
           </FormGroup>
           <FormGroup tag="fieldset">
-            <legend>Current work status</legend>
+            <label>Current work status</label>
             <FormGroup check>
               <Label>
                 <Input
@@ -159,7 +161,7 @@ export default class NewTalentForm extends React.Component {
           </FormGroup>
 
           <FormGroup>
-            <Label for="location">Where do you wanna work</Label>
+            <Label for="location">Where do you wanna work?</Label>
             <Input
               type="text"
               name="location"
@@ -184,7 +186,7 @@ export default class NewTalentForm extends React.Component {
               type="file"
               id="photo"
               name="photo"
-              label="Yo, pick a pic!"
+              label=""
               value={this.state.photo}
               onChange={this.onChange}
               // className="file-upload"
@@ -192,7 +194,6 @@ export default class NewTalentForm extends React.Component {
               // data-form-data="{ 'transform': {'crop':'limit','tags':'samples', 'width':3000, 'height':2000}} "
             />
           </FormGroup>
-
           <Button type="submit">Submit</Button>
         </Form>
       </div>

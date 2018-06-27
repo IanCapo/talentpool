@@ -93,13 +93,13 @@ export default {
     },
   ],
   filter: [
-    { option: 'html', id: uid() },
-    { option: 'css', id: uid() },
-    { option: 'javascript', id: uid() },
+    { option: 'HTML', id: uid() },
+    { option: 'CSS', id: uid() },
+    { option: 'JavaScript', id: uid() },
     { option: 'available', id: uid() },
   ],
   isDropdownOpen: false,
   selectedFilter: 'all',
-  selectedSection: 'History',
+  selectedSection: 'Skills',
   skills: [],
 }

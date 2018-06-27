@@ -14,25 +14,25 @@ router.get('/', function(req, res) {
 //   res.send('person added')
 // })
 
-router.post('/', (req, res) => {
-  console.log(req)
-  const file = req.files.file
-  const originalName = file.name
-  const fileName = `${uid(7)}.${originalName.split('.')[1]}`
-  const targetPath = path.resolve(__dirname, '../uploads', fileName)
-  fs.writeFile(targetPath, file.data, err => {
-    const person = req.body
-    if (err) {
-      res.end(err.message)
-    } else {
-      new Person({ ...person, photo: targetPath }).save(err => {
-        if (err) {
-          res.end(err.message)
-        }
-        res.json({ message: 'ok' })
-      })
-    }
-  })
-})
+// router.post('/person', (req, res) => {
+//   console.log(req)
+//   const file = req.files.file
+//   const originalName = file.name
+//   const fileName = `${uid(7)}.${originalName.split('.')[1]}`
+//   const targetPath = path.resolve(__dirname, '../uploads', fileName)
+//   fs.writeFile(targetPath, file.data, err => {
+//     const person = req.body
+//     if (err) {
+//       res.end(err.message)
+//     } else {
+//       new Person({ ...person, photo: targetPath }).save(err => {
+//         if (err) {
+//           res.end(err.message)
+//         }
+//         res.json({ message: 'ok' })
+//       })
+//     }
+//   })
+// })
 
 module.exports = router
