@@ -9,7 +9,14 @@ import { css } from 'emotion'
 
 export default class Example extends React.Component {
   render() {
-    const { onItemClick, onClick, isDropdownOpen, selectedFilter } = this.props
+    const {
+      onItemClick,
+      onClick,
+      isDropdownOpen,
+      selectedFilter,
+      filter,
+    } = this.props
+
     return (
       <ButtonDropdown
         isOpen={isDropdownOpen}
@@ -29,7 +36,7 @@ export default class Example extends React.Component {
             all
           </DropdownItem>
           <DropdownItem toggle={false} divider />
-          {this.props.filter.map(filter => (
+          {filter.map(filter => (
             <DropdownItem
               toggle={false}
               onClick={e => onItemClick(`${filter.option}`)}

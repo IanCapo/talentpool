@@ -1,4 +1,3 @@
-import testphoto from '../images/foto.jpg'
 import uid from 'uid'
 
 export default {
@@ -150,6 +149,7 @@ export default {
     { option: 'HTML', _id: uid() },
     { option: 'CSS', _id: uid() },
     { option: 'JavaScript', _id: uid() },
+    { option: 'ES6', _id: uid() },
     { option: 'available', _id: uid() },
   ],
   isDropdownOpen: false,
