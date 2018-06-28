@@ -4,7 +4,7 @@ import './newtalentformstyle.css'
 import { CustomInput, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
 import { saveFullState } from '../service'
 
@@ -19,6 +19,16 @@ const KeyCodes = {
   comma: 188,
   enter: 13,
 }
+const SubmitMessage = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90%;
+  height: 80vh;
+  align-items: center;
+  padding: 20px;
+  color: #5b6167;
+`
 
 const delimiters = [KeyCodes.enter]
 
@@ -38,15 +48,17 @@ export default class NewTalentForm extends React.Component {
         { id: 'HTML5', text: 'HTML5' },
         { id: 'CSS', text: 'CSS' },
         { id: 'JavaScript', text: 'JavaScript' },
-        { id: 'React', text: 'React' },
-        { id: 'Node', text: 'Node' },
+        { id: 'React.js', text: 'React.js' },
+        { id: 'Node.js', text: 'Node.js' },
         { id: 'Express', text: 'Express' },
+        { id: 'Java', text: 'Java' },
+        { id: 'React Native', text: 'React Native' },
+        { id: 'Responsive Websites', text: 'Responsive Websites' },
       ],
-      redirect: false,
+      isFormSent: false,
     }
     this.handleDelete = this.handleDelete.bind(this)
     this.handleAddition = this.handleAddition.bind(this)
-    this.handleDrag = this.handleDrag.bind(this)
   }
 
   onChange = event => {
@@ -85,6 +97,9 @@ export default class NewTalentForm extends React.Component {
         fetch('/person', {
           method: 'POST',
           body: formData,
+        }).then(res => {
+          console.log(res)
+          this.setState({ isFormSent: true })
         })
       },
     )
@@ -102,19 +117,8 @@ export default class NewTalentForm extends React.Component {
       tags: [...state.tags, tag],
     }))
   }
-  handleDrag(tag, currPos, newPos) {
-    const tags = [...this.state.tags]
-    const newTags = tags.slice()
-
-    newTags.splice(currPos, 1)
-    newTags.splice(newPos, 0, tag)
-
-    // re-render
-    this.setState({ tags: newTags })
-  }
 
   render() {
-    const { tags, suggestions } = this.state
     const { onSelectSection } = this.props
 
     return (
@@ -122,6 +126,27 @@ export default class NewTalentForm extends React.Component {
         <Link onClick={e => onSelectSection('History')} to="/">
           <Image src={logo} alt="" />
         </Link>
+        {this.state.isFormSent ? this.renderResultMessage() : this.renderForm()}
+      </div>
+    )
+  }
+
+  renderResultMessage() {
+    return (
+      <SubmitMessage>
+        <h4>Thanks for creating a profile with us!</h4>
+        <Link to="/">
+          <Button>Back to start</Button>
+        </Link>
+      </SubmitMessage>
+    )
+  }
+
+  renderForm() {
+    const { tags, suggestions } = this.state
+
+    return (
+      <div>
         <Form className={styledForm} onSubmit={this.onSubmit}>
           <FormGroup>
             <Label for="talent-name">First name</Label>
@@ -185,7 +210,7 @@ export default class NewTalentForm extends React.Component {
           <Label for="skills">What are your skills?</Label>
           <ReactTags
             tags={tags}
-            placeholder="Add a new skill"
+            placeholder="Add new skills and order them right"
             suggestions={suggestions}
             handleDelete={this.handleDelete}
             handleAddition={this.handleAddition}
@@ -200,9 +225,6 @@ export default class NewTalentForm extends React.Component {
               label=""
               value={this.state.photo}
               onChange={this.onChange}
-              // className="file-upload"
-              // data-cloudinary-field="image_id"
-              // data-form-data="{ 'transform': {'crop':'limit','tags':'samples', 'width':3000, 'height':2000}} "
             />
           </FormGroup>
           <Button type="submit">Submit</Button>
