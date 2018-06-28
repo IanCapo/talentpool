@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import styled from 'react-emotion'
 
 const Skill = styled('div')`
-  border: 1px solid #ed6544;
+  border: 1px solid #5b6167;
   border-radius: 3px;
   width: auto;
   padding: 0.2rem;
   text-align: center;
   margin: 1rem;
-  color: #ed6544;
+  color: #5b6167;
   overflow: auto;
+  font-style: italic;
 `
 export default class SkillTile extends Component {
   render() {

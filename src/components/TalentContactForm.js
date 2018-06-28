@@ -16,7 +16,7 @@ export default class TalentContactForm extends React.Component {
             type="text"
             name="companyname"
             id="company-name"
-            placeholder="Your company"
+            placeholder="e.g. IT Solutions Ltd"
           />
         </FormGroup>
         <FormGroup>
@@ -25,17 +25,12 @@ export default class TalentContactForm extends React.Component {
             type="text"
             name="name"
             id="contact-name"
-            placeholder="Your name"
+            placeholder="e.g. Jane Doe"
           />
         </FormGroup>
         <FormGroup>
           <Label for="phone-number">Phone</Label>
-          <Input
-            type="phone"
-            name="phone"
-            id="phone-number"
-            placeholder="Your phone number"
-          />
+          <Input type="phone" name="phone" id="phone-number" placeholder="" />
         </FormGroup>
         <FormGroup>
           <Label for="contact-email">Email</Label>
@@ -43,7 +38,7 @@ export default class TalentContactForm extends React.Component {
             type="email"
             name="email"
             id="contact-email"
-            placeholder="Your email address"
+            placeholder="e.g. janedoe@itsolutions.com"
           />
         </FormGroup>
 

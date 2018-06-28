@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers/reducer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -11,22 +11,24 @@ import initialState from './reducers/initialState'
 import UserListPage from './components/UserListPage'
 import TalentProfileView from './containers/TalentProfileView'
 import ScrollToTop from './components/ScrollToTop'
+import NewTalentFormView from './containers/NewTalentFormView'
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   getInitialState(),
-  applyMiddleware(useLocalStorage),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  composeEnhancers(applyMiddleware(useLocalStorage)),
 )
 
 class App extends Component {
   componentDidMount() {
-    fetch('/state', {
+    fetch('/person', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
     })
       .then(res => res.json())
       .then(state => store.dispatch(overrideState(state)))
+      .catch(error => console.warn(error))
   }
   render() {
     return (
@@ -35,6 +37,7 @@ class App extends Component {
           <ScrollToTop>
             <Route exact path="/" component={UserListPage} />
             <Route path={`/talentprofile/:id`} component={TalentProfileView} />
+            <Route path={`/newuser`} component={NewTalentFormView} />
           </ScrollToTop>
         </Router>
       </Provider>

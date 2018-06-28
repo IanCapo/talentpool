@@ -106,12 +106,13 @@
     }
   ],
   "filter": [
-    { "option": "html", "id": "wg8gvnv" },
-    { "option": "css", "id": "6hhrfno" },
-    { "option": "javascript", "id": "3y1y1gh" },
+    { "option": "HTML", "id": "wg8gvnv" },
+    { "option": "CSS", "id": "6hhrfno" },
+    { "option": "JavaScript", "id": "3y1y1gh" },
     { "option": "available", "id": "eijql9g" }
   ],
   "isDropdownOpen": false,
   "selectedFilter": "all",
-  "selectedSection": "History"
+  "selectedSection": "Skills",
+  "skills": []
 }

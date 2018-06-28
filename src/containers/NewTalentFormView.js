@@ -1,19 +1,18 @@
 import { connect } from 'react-redux'
-import TalentProfile from '../components/TalentProfile'
-import { selectSection } from '../actions/actions'
+import NewTalentForm from '../components/NewTalentForm'
+import { sendForm, selectSection } from '../actions/actions'
 
 const mapStateToProps = (state, ownProps) => ({
-  user: state.users.find(user => user._id === ownProps.match.params.id),
   selectedSection: state.selectedSection,
+  skills: state.skills,
 })
 
 const mapDispatchToProps = dispatch => ({
+  onSubmit: data => dispatch(sendForm(data)),
   onSelectSection: option => dispatch(selectSection(option)),
 })
 
-const TalentProfileView = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TalentProfile)
-
-export default TalentProfileView
+)(NewTalentForm)

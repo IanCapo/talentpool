@@ -17,7 +17,7 @@ export default class UserList extends Component {
     }
 
     return users.filter(filterFunction).map(user => (
-      <Link key={user.id} to={`/talentprofile/${user.id}`}>
+      <Link key={user._id} to={`/talentprofile/${user._id}`}>
         <UserItem
           photo={user.photo}
           name={user.name}
@@ -25,7 +25,7 @@ export default class UserList extends Component {
           status={user.status}
           skills={user.skills}
           lastname={user.lastname}
-          id={user.id}
+          id={user._id}
           users={users}
           history={user.history}
         />
